@@ -16,11 +16,14 @@ class User < ApplicationRecord
   end
 
   def password_is?(password)
+    ## takes password and hashes it, then checks to see it's same as user's
+    ## password_digest
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def password=(password)
-    ##sets password input to instance variable but does NOT save to db, just for validation purposes
+    ##sets password input to instance variable but does NOT save to db, just for validaing
+    ## presense of password when setting or changing it
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
