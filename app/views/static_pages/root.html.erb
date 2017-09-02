@@ -1,2 +1,14 @@
+## checks if a current_user exists in backend
+## if so, assigns sets a current_user on the window using users view template
+## react checks for window.current_user before setting up store
+## if it exists, creates preloadedState with current_user provided to
+## store so react knows the user is already logged in
+
+<script type="text/javascript">
+  <% if logged_in? %>
+  	window.currentUser =
+      <%= render("api/users/user.json.jbuilder", user: current_user).html_safe %>
+  <% end %>
+</script>
 
 <main id="root"></main>
